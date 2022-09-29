@@ -6,6 +6,18 @@ metadata:
 spec:
   prefix: "container-agent"
   image: krushnabhanage10/azdo-slave:latest
+  volumeMounts:
+  - mountPath: /var/run/
+    name: docker-sock
+  sidecars:
+    - name: docker
+      image: docker:19.03.1-dind
+      volumeMounts:
+      - mountPath: /var/run/
+        name: docker-sock
+  volumes:
+    - name: docker-sock
+      emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
