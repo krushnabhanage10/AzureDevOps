@@ -1,0 +1,46 @@
+apiVersion: "azdo.octolamp.nl/v1"
+kind: AgentSpec
+metadata:
+  namespace: azdo-agents
+  name: cloudovenagent
+spec:
+  prefix: "container-agent"
+  image: krushnabhanage10/azdo-slave:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octolamp-agent-controller
+  namespace: octolamp-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: octolamp-agent-controller
+  template:
+    metadata:
+      labels:
+        run: octolamp-agent-controller
+    spec:
+      serviceAccountName: octolamp-service-account
+      containers:
+      - env:
+        - name: AZDO_ORG_URI
+          value: https://dev.azure.com/KRUSHNABHANAGE
+        - name: AZDO_TOKEN
+          value: 4qll4fuweidysw2bakpebuljxhew7nmxoplgwwfjlasvmvp6fufa
+        - name: AZDO_POOLNAME
+          value: "k8s-pool"
+        - name: TARGET_NAMESPACE
+          value: "azdo-agents"
+        - name: STANDBY_AGENT_COUNT
+          value: "1"
+        - name: MAX_AGENT_COUNT
+          value: "20"
+        image: moimhossain/octolamp-agent-controller:net6-v1.0.0
+        imagePullPolicy: Always
+        name: octolamp-agent-controller
+        resources:
+          limits:
+            cpu: 200m
+            memory: 300Mi
