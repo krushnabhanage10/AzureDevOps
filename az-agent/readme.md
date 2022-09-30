@@ -25,4 +25,7 @@ chmod 700 get_helm.sh
     # Install keda Helm chart:
         helm install keda kedacore/keda --namespace keda
 
- 
+To setup auto-scale we are using custom-resource-defination ScaledObject resource.
+
+    # Apply Manifest:
+        kubectly apply -f autoscale.yml 
