@@ -8,7 +8,7 @@ spec:
     image: krushnabhanage10/azdo-slave:latest
     volumeMounts:
     - mountPath: /var/run/
-  - prefix: "container-agent"
+  - prefix: "docker"
     image: docker:19.03.1-dind
     volumeMounts:
     - mountPath: /var/run/
