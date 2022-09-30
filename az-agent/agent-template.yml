@@ -15,7 +15,7 @@ metadata:
   name: azdevopspat
   namespace: azdevops
 data:
-  AZP_TOKEN: lbhhppea5u5bw7ai3ea2ege3xrncemejw3jkubrvp2j5x2mgo2wa
+  AZP_TOKEN: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -26,7 +26,7 @@ metadata:
     app: azdevops-agent
 data:
   AZP_POOL: "k8s-agents"
-  AZP_URL: https://dev.azure.com/KRUSHNABHANAGE
+  AZP_URL: "https://dev.azure.com/KRUSHNABHANAGE"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,11 +48,14 @@ spec:
       containers:
       - name: "k8s-agent"
         image: krushnabhanage10/azdo-slave:latest
+        env:
+        - name: AZP_TOKEN
+          value: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
         envFrom:
           - configMapRef:
               name: azdevopscm
-          - secretRef:
-              name: azdevopspat
+          # - secretRef:
+          #     name: azdevopspat
         securityContext:
           privileged: true
           runAsUser: 0
