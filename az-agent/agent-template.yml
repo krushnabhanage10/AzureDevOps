@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azdevops-deployment
+  namespace: azdevops
+  labels:
+    app: azdevops-agent
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: azdevops-agent
+  template:
+    metadata:
+      labels:
+        app: azdevops-agent
+    spec:
+      containers:
+      - name: "ado-runner-container"
+        image: krushnabhanage10/azdo-slave:latest
+        env:
+        - name: AZP_TOKEN
+          value: qlwzt2ail6c7d6mon3ncefqwo3qxiknhyiijqdfhjva5vr4v6uga
+        - name: AZP_URL
+          value: https://dev.azure.com/KRUSHNABHANAGE
+        - name: AZP_POOL
+          value: "k8s-agents"
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: "200m"
+        volumeMounts:
+        - mountPath: /var/run/
+          name: docker-volume
+      - name: "docker"
+        image: "docker:19.03.1-dind"
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /var/run/
+          name: docker-volume
+      volumes:
+      - name: docker-volume
+        emptyDir: {}
