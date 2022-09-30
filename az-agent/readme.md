@@ -2,7 +2,7 @@ To Add K8s Autoscaled agents to Azure DevOps.
 
 Below command will create keda(will use for keda resources) and azdevops(for azdo agent and resources) namespaces, required cofigmaps, secrets. 
 
-  # Apply manifest:
+    # Apply manifest:
         kubectly apply -f agent-template.yml    
 
 
@@ -18,7 +18,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ]
 
-  # Add Helm repo
+    # Add Helm repo
         helm repo add kedacore https://kedacore.github.io/charts
         helm repo update
 
