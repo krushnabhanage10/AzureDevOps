@@ -18,11 +18,11 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ]
 
-    # Add Helm repo
+    # Add Helm repo:
         helm repo add kedacore https://kedacore.github.io/charts
         helm repo update
 
-    # Install keda Helm chart
+    # Install keda Helm chart:
         helm install keda kedacore/keda --namespace keda
 
  
