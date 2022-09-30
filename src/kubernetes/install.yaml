@@ -41,7 +41,11 @@ spec:
                   type: string
                 imagePullSecretName:
                   type: string
+                volumeMounts:
+                  type: string  
               required: [image]
+              volumes: 
+                type: string
   # either Namespaced or Cluster
   scope: Namespaced
   names:
