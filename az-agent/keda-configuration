@@ -1,0 +1,7 @@
+# Add Helm repo
+helm repo add kedacore https://kedacore.github.io/charts
+helm repo update
+
+# Install keda Helm chart
+kubectl create namespace keda
+helm install keda kedacore/keda --namespace keda

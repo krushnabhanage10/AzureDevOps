@@ -1,21 +1,26 @@
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: keda
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: azdevops
 ---
 apiVersion: v1
 kind: Secret
 type: Opaque
 metadata:
-  name: azdevops
+  name: azdevopspat
   namespace: azdevops
 data:
-  AZP_TOKEN: "qlwzt2ail6c7d6mon3ncefqwo3qxiknhyiijqdfhjva5vr4v6uga"
+  AZP_TOKEN: lbhhppea5u5bw7ai3ea2ege3xrncemejw3jkubrvp2j5x2mgo2wa
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: azdevops
+  name: azdevopscm
   namespace: azdevops
   labels:
     app: azdevops-agent
@@ -45,9 +50,9 @@ spec:
         image: krushnabhanage10/azdo-slave:latest
         envFrom:
           - configMapRef:
-              name: azdevops
+              name: azdevopscm
           - secretRef:
-              name: azdevops
+              name: azdevopspat
         securityContext:
           privileged: true
           runAsUser: 0
