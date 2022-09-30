@@ -41,7 +41,7 @@ spec:
         app: azdevops-agent
     spec:
       containers:
-      - name: "ado-runner-container"
+      - name: "k8s-agent"
         image: krushnabhanage10/azdo-slave:latest
         envFrom:
           - configMapRef:
