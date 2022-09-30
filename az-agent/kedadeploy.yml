@@ -13,6 +13,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: azure-pipelines-scaledobject
+  namespace: azdevops
 spec:
   scaleTargetRef:
     name: azdevops-deployment

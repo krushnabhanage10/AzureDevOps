@@ -15,7 +15,7 @@ metadata:
   name: azdevopspat
   namespace: azdevops
 data:
-  AZP_TOKEN: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
+  AZP_TOKEN: "d2w3eG5pdGh5d2w1bm4yY241Y2c1a3BvcW50dnd6cm8zc3VzejJjZTZ4c3VzN2VkaTM2YQ=="
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -48,14 +48,14 @@ spec:
       containers:
       - name: "k8s-agent"
         image: krushnabhanage10/azdo-slave:latest
-        env:
-        - name: AZP_TOKEN
-          value: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
+        # env:
+        # - name: AZP_TOKEN
+        #   value: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
         envFrom:
           - configMapRef:
               name: azdevopscm
-          # - secretRef:
-          #     name: azdevopspat
+          - secretRef:
+              name: azdevopspat
         securityContext:
           privileged: true
           runAsUser: 0

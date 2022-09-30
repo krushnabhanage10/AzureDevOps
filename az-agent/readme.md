@@ -1,4 +1,6 @@
 To Add K8s Autoscaled agents to Azure DevOps.
+note: Add PAT token base4 encoded in secret.
+echo -n 'pat' | base64
 
 Below command will create keda(will use for keda resources) and azdevops(for azdo agent and resources) namespaces, required cofigmaps, secrets. 
 
