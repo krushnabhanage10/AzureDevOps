@@ -8,13 +8,15 @@ spec:
     image: krushnabhanage10/azdo-slave:latest
     volumeMounts:
     - mountPath: /var/run/
+      name: dockervol
   - prefix: "docker"
     image: docker:19.03.1-dind
     volumeMounts:
-    - mountPath: /var/run/
-      name: docker-sock
+    - name: dockervol
+      mountPath: /var/run/
   volumes:
     - emptyDir: {}
+      name: dockervol
 ---
 apiVersion: apps/v1
 kind: Deployment

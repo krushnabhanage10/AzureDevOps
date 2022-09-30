@@ -42,7 +42,9 @@ spec:
                 imagePullSecretName:
                   type: string
                 volumeMounts:
-                  type: string  
+                  type: string 
+                name:
+                  type: string 
                 volumes: 
                   type: string
               required: [image]
