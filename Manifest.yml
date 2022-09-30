@@ -47,7 +47,7 @@ spec:
         - name: AZDO_ORG_URI
           value: https://dev.azure.com/KRUSHNABHANAGE
         - name: AZDO_TOKEN
-          value: 4qll4fuweidysw2bakpebuljxhew7nmxoplgwwfjlasvmvp6fufa
+          value: 7v45djxwukc53hvtccitwo5yvjwkdh7nl65c3ndgcjk3wcfvrwfq
         - name: AZDO_POOLNAME
           value: "k8s-pool"
         - name: TARGET_NAMESPACE
