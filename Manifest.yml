@@ -1,22 +1,30 @@
-apiVersion: "azdo.octolamp.nl/v1"
-kind: AgentSpec
+apiVersion: "v1"
+kind: "Pod"
+metadata:
 metadata:
   namespace: azdo-agents
   name: cloudovenagent
 spec:
-  - prefix: "container-agent"
-    image: krushnabhanage10/azdo-slave:latest
+  containers:
+  - image: krushnabhanage10/azdo-slave:latest
+    name: "container-agent"
+    securityContext:
+      privileged: true
+      runAsUser: 0
     volumeMounts:
-    - mountPath: /var/run/
-      name: dockervol
-  - prefix: "docker"
-    image: docker:19.03.1-dind
+    - mountPath: "/var/run/"
+      name: "docker-sock"
+  - image: "docker:19.03.1-dind"
+    name: "docker"
+    securityContext:
+      privileged: true
+      runAsUser: 0
     volumeMounts:
-    - name: dockervol
-      mountPath: /var/run/
+    - mountPath: "/var/run/"
+      name: "docker-sock"
   volumes:
-    - emptyDir: {}
-      name: dockervol
+  - emptyDir: {}
+    name: "docker-sock"
 ---
 apiVersion: apps/v1
 kind: Deployment
