@@ -17,7 +17,7 @@ metadata:
 spec:
   scaleTargetRef:
     name: azdevops-deployment
-  minReplicaCount: 2
+  minReplicaCount: 1
   maxReplicaCount: 20 
   triggers:
   - type: azure-pipelines
