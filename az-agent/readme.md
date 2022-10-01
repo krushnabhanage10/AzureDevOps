@@ -30,4 +30,4 @@ chmod 700 get_helm.sh
 To setup auto-scale we are using custom-resource-defination ScaledObject resource.
 
     # Apply Manifest:
-        kubectly apply -f autoscale.yml 
+        kubectl apply -f autoscale.yml 
