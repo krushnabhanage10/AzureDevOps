@@ -60,9 +60,12 @@ spec:
           privileged: true
           runAsUser: 0
         resources:
+          limits:
+            cpu: 200m
+            memory: 512Mi
           requests:
+            cpu: 100m
             memory: 256Mi
-            cpu: "150m"
         volumeMounts:
         - mountPath: /var/run/
           name: docker-volume
