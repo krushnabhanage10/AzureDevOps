@@ -6,7 +6,7 @@ metadata:
 spec:
   secretTargetRef:
     - parameter: personalAccessToken
-      name: azdevops
+      name: azdevopspat
       key: AZP_TOKEN
 ---
 apiVersion: keda.sh/v1alpha1
