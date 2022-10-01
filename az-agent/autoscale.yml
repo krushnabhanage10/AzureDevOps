@@ -22,7 +22,7 @@ spec:
   triggers:
   - type: azure-pipelines
     metadata:
-      poolName: "k8s-keda-pool"
+      poolName: "k8s-agents"
       organizationURLFromEnv: "AZP_URL"
       targetPipelinesQueueLength: "1"
     authenticationRef:
