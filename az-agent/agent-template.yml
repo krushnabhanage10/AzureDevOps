@@ -74,6 +74,10 @@ spec:
         securityContext:
           privileged: true
           runAsUser: 0
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
         volumeMounts:
         - mountPath: /var/run/
           name: docker-volume
