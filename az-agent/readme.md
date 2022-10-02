@@ -5,7 +5,7 @@ echo -n 'pat' | base64
 Below command will create keda(will use for keda resources) and azdevops(for azdo agent and resources) namespaces, required cofigmaps, secrets. 
 
     # Apply manifest:
-        kubectly apply -f agent-template.yml    
+        kubectl apply -f agent-template.yml    
 
 
 Then verify the deployment, CM and Secrets in azdevops namespace.
