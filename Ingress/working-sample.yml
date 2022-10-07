@@ -1,0 +1,45 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"nginx.ingress.kubernetes.io/rewrite-target":"/$2","nginx.ingress.kubernetes.io/ssl-redirect":"false","nginx.ingress.kubernetes.io/use-regex":"true"},"name":"hello-world-ingress","namespace":"default"},"spec":{"ingressClassName":"nginx","rules":[{"http":{"paths":[{"backend":{"service":{"name":"aks-helloworld-one","port":{"number":80}}},"path":"/hello-world-one(/|$)(.*)","pathType":"Prefix"},{"backend":{"service":{"name":"aks-helloworld-two","port":{"number":80}}},"path":"/hello-world-two(/|$)(.*)","pathType":"Prefix"},{"backend":{"service":{"name":"aks-helloworld-one","port":{"number":80}}},"path":"/(.*)","pathType":"Prefix"}]}}]}}
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  creationTimestamp: "2022-10-07T20:10:47Z"
+  generation: 2
+  name: hello-world-ingress
+  namespace: default
+  resourceVersion: "29890"
+  uid: 783c5671-93e4-4df2-be4e-d40bcfc4f4e7
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: dotnetapp
+            port:
+              number: 80
+        path: /dotnet(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: httpd
+            port:
+              number: 80
+        path: /httpd(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: dotnetapp
+            port:
+              number: 80
+        path: /(.*)
+        pathType: Prefix
