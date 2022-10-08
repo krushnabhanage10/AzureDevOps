@@ -15,6 +15,7 @@ Then verify the deployment, CM and Secrets in azdevops namespace.
 To install KEDA in your Kubernetes cluster do the following
 
 Using Mannifest: 
+
           kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.8.0/keda-2.8.0.yaml
 
 Using Helm: 
