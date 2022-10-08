@@ -6,13 +6,18 @@ Below command will create keda(will use for keda resources) and azdevops(for azd
 
 Apply manifest:
 
-        # kubectl apply -f agent-template.yml    
+          kubectl apply -f agent-template.yml    
 
 
 Then verify the deployment, CM and Secrets in azdevops namespace.
 
 
 To install KEDA in your Kubernetes cluster do the following
+
+Using Mannifest: 
+          kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.8.0/keda-2.8.0.yaml
+
+Using Helm: 
 
 If havent installed helm already then run below commands. 
 [
@@ -23,15 +28,15 @@ chmod 700 get_helm.sh
 
 Add Helm repo:
 
-        # helm repo add kedacore https://kedacore.github.io/charts
-        # helm repo update
+          helm repo add kedacore https://kedacore.github.io/charts
+          helm repo update
 
 Install keda Helm chart:
 
-        # helm install keda kedacore/keda --namespace keda
+          helm install keda kedacore/keda --namespace keda
 
 To setup auto-scale we are using custom-resource-defination ScaledObject resource.
 
 Apply Manifest:
 
-        # kubectl apply -f autoscale.yml 
+          kubectl apply -f autoscale.yml 
