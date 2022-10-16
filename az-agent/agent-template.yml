@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: "k8s-agent"
-        image: krushnabhanage10/azdo-slave:latest
+        image: krushnabhanage10/azdo-slave:javamavenpythondotnet
         # env:
         # - name: AZP_TOKEN
         #   value: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
@@ -59,13 +59,13 @@ spec:
         securityContext:
           privileged: true
           runAsUser: 0
-        resources:
-          limits:
-            cpu: 200m
-            memory: 512Mi
-          requests:
-            cpu: 100m
-            memory: 256Mi
+#         resources:
+#           limits:
+#             cpu: 200m
+#             memory: 512Mi
+#           requests:
+#             cpu: 100m
+#             memory: 256Mi
         volumeMounts:
         - mountPath: /var/run/
           name: docker-volume
@@ -74,10 +74,10 @@ spec:
         securityContext:
           privileged: true
           runAsUser: 0
-        resources:
-          requests:
-            cpu: 200m
-            memory: 512Mi
+#         resources:
+#           requests:
+#             cpu: 200m
+#             memory: 512Mi
         volumeMounts:
         - mountPath: /var/run/
           name: docker-volume
