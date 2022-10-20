@@ -31,7 +31,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azdevops-deployment
+  name: azdoagent
   namespace: azdevops
   labels:
     app: azdevops-agent
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: "k8s-agent"
-        image: krushnabhanage10/azdo-slave:javamavenpythondotnet
+        image: krushnabhanage10/azdo-slave:javamavenpythondotnetnodejs
         # env:
         # - name: AZP_TOKEN
         #   value: "wl7xnithywl5nn2cn5cg5kpoqntvwzro3susz2ce6xsus7edi36a"
