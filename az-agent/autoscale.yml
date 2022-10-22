@@ -16,7 +16,7 @@ metadata:
   namespace: azdevops
 spec:
   scaleTargetRef:
-    name: azdevops-deployment
+    name: azdoagent
   minReplicaCount: 1
   maxReplicaCount: 20 
   triggers:
