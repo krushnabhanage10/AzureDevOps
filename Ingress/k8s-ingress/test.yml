@@ -1,0 +1,130 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: todo
+  name: nginx-ingress
+spec:
+  tls:
+    - secretName: nginx-demo-com-tls
+      hosts:
+        - nginx-demo.com
+  rules:
+    - host: todo.web.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-ui-service
+                port:
+                  number: 3001
+    - host: todo.api.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-api-service
+                port:
+                  number: 8080
+--- 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: todo
+  name: todo-ingress-path-based
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  tls:
+    - secretName: nginx-demo-com-tls
+      hosts:
+        - nginx-demo.com
+  rules:
+    - host: todo.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-ui-service
+                port:
+                  number: 3001
+          - path: /api/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-api-service
+                port:
+                  number: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  name: mcingress
+spec:
+  tls:
+    - secretName: d-w-k-tls
+      hosts:
+        - dotnetapp.web.krushna.com
+    - secretName: j-w-k-tls
+      hosts:
+        - javapp.web.krushna.com
+  rules:
+    - host: javapp.web.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shuttle
+                port:
+                  number: 80
+    - host: dotnetapp.web.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dotnetapp
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: todo
+  name: todo-ingress-path-based
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/default-backend: nginx-ingress/custom-default-backend
+spec:
+  tls:
+    - secretName: w-k-tls
+      hosts:
+        - web.krushna.com
+  rules:
+    - host: web.krushna.com
+      http:
+        paths:
+          - path: /javaapp/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: shuttle
+                port:
+                  number: 80
+          - path: /dotnetapp/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: dotnetapp
+                port:
+                  number: 80
+---
