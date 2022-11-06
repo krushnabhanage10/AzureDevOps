@@ -65,7 +65,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: default
-  name: mcingress
+  name: todo-ingress-host-based
 spec:
   tls:
     - secretName: d-w-k-tls
@@ -75,7 +75,7 @@ spec:
       hosts:
         - javapp.web.krushna.com
   rules:
-    - host: javapp.web.krushna.com
+    - host: javaapp.web.krushna.com
       http:
         paths:
           - path: /
@@ -99,11 +99,10 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: todo
+  namespace: default
   name: todo-ingress-path-based
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/default-backend: nginx-ingress/custom-default-backend
 spec:
   tls:
     - secretName: w-k-tls
