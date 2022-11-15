@@ -1,0 +1,83 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress-host-based
+spec:
+  tls:
+    - secretName: javaapp-portal-krushna-com-tls
+      hosts:
+        - javaapp.portal.krushna.com
+    - secretName: dotnetapp-portal-krushna-com-tls
+      hosts:
+        - dotnetapp.portal.krushna.com
+    - secretName: pythonapp-portal-krushna-com-tls
+      hosts:
+        - pythonapp.portal.krushna.com
+  rules:
+    - host: dotnetapp.portal.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dotnetapp
+                port:
+                  number: 80
+    - host: pythonapp.portal.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pythonapp
+                port:
+                  number: 80
+    - host: javaapp.portal.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shuttle
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress-path-based
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  tls:
+    - secretName: portal-krushna-com-tls
+      hosts:
+        - portal.krushna.com
+  rules:
+    - host: portal.krushna.com
+      http:
+        paths:
+          - path: /pythonapp/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: pythonapp
+                port:
+                  number: 80
+          - path: /dotnetapp/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: dotnetapp
+                port:
+                  number: 80
+          - path: /javaapp/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: shuttle
+                port:
+                  number: 80
