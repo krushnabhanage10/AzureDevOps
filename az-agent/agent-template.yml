@@ -70,7 +70,7 @@ spec:
         - mountPath: /var/run/
           name: docker-volume
       - name: "docker"
-        image: "docker:19.03.1-dind"
+        image: "docker:20.10-dind"
         securityContext:
           privileged: true
           runAsUser: 0
