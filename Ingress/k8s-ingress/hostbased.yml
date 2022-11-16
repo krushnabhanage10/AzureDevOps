@@ -1,31 +1,46 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: todo
-  name: nginx-ingress
+  name: todo-ingress-host-based
 spec:
   tls:
-    - secretName: nginx-demo-com-tls
+    - secretName: javaapp-portal-krushna-com-tls
       hosts:
-        - nginx-demo.com
+        - javaapp.portal.krushna.com
+    - secretName: dotnetapp-portal-krushna-com-tls
+      hosts:
+        - dotnetapp.portal.krushna.com
+    - secretName: pythonapp-portal-krushna-com-tls
+      hosts:
+        - pythonapp.portal.krushna.com
   rules:
-    - host: todo.web.krushna.com
+    - host: dotnetapp.portal.krushna.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: todo-ui-service
+                name: dotnetapp
                 port:
-                  number: 3001
-    - host: todo.api.krushna.com
+                  number: 80
+    - host: pythonapp.portal.krushna.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: todo-api-service
+                name: pythonapp
                 port:
-                  number: 8080
+                  number: 80
+    - host: javaapp.portal.krushna.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shuttle
+                port:
+                  number: 80
